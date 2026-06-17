@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>建築基準法 条文検索DB</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>建築基準法 条文検索DB</h1>
+    <p>建築物の用途・規模を入力すると、審査対象となる条文を表示します</p>
+  </header>
+
+  <main>
+    <section class="input-section">
+      <h2>建築物の情報を入力</h2>
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label for="use-type">用途</label>
+          <select id="use-type">
+            <option value="">選択してください</option>
+            <optgroup label="住居系">
+              <option value="住宅">住宅</option>
+              <option value="共同住宅">共同住宅</option>
+              <option value="寄宿舎">寄宿舎</option>
+              <option value="下宿">下宿</option>
+            </optgroup>
+            <optgroup label="商業・業務系">
+              <option value="事務所">事務所</option>
+              <option value="百貨店">百貨店</option>
+              <option value="マーケット">マーケット</option>
+              <option value="展示場">展示場</option>
+              <option value="物品販売業を営む店舗">物品販売店舗</option>
+              <option value="飲食店">飲食店</option>
+              <option value="料理店">料理店</option>
+              <option value="キャバレー">キャバレー・カフェ等</option>
+              <option value="ホテル">ホテル</option>
+              <option value="旅館">旅館</option>
+            </optgroup>
+            <optgroup label="文教・福祉系">
+              <option value="学校">学校</option>
+              <option value="体育館">体育館</option>
+              <option value="図書館">図書館</option>
+              <option value="博物館">博物館・美術館</option>
+              <option value="病院">病院</option>
+              <option value="診療所">診療所</option>
+              <option value="児童福祉施設">児童福祉施設等</option>
+            </optgroup>
+            <optgroup label="集会・娯楽系">
+              <option value="劇場">劇場・映画館・演芸場</option>
+              <option value="観覧場">観覧場</option>
+              <option value="公会堂">公会堂・集会場</option>
+              <option value="遊技場">遊技場</option>
+              <option value="公衆浴場">公衆浴場</option>
+            </optgroup>
+            <optgroup label="工業・倉庫系">
+              <option value="倉庫">倉庫</option>
+              <option value="自動車車庫">自動車車庫</option>
+              <option value="工場">工場</option>
+              <option value="危険物の貯蔵場">危険物貯蔵場</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="total-floor-area">延べ床面積（㎡）</label>
+          <input type="number" id="total-floor-area" placeholder="例：500" min="0">
+        </div>
+
+        <div class="form-group">
+          <label for="stories">階数</label>
+          <input type="number" id="stories" placeholder="例：3" min="1">
+        </div>
+
+        <div class="form-group">
+          <label for="height">建築物の高さ（m）</label>
+          <input type="number" id="height" placeholder="例：13" min="0" step="0.1">
+        </div>
+
+        <div class="form-group">
+          <label for="structure">構造</label>
+          <select id="structure">
+            <option value="">未定・選択してください</option>
+            <option value="木造">木造</option>
+            <option value="組積造">組積造（れんが造・石造等）</option>
+            <option value="補強コンクリートブロック造">補強コンクリートブロック造</option>
+            <option value="鉄骨造">鉄骨造（S造）</option>
+            <option value="鉄筋コンクリート造">鉄筋コンクリート造（RC造）</option>
+            <option value="鉄骨鉄筋コンクリート造">鉄骨鉄筋コンクリート造（SRC造）</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="area-type">用途地域</label>
+          <select id="area-type">
+            <option value="">選択してください</option>
+            <optgroup label="住居系">
+              <option value="第一種低層住居専用地域">第一種低層住居専用地域</option>
+              <option value="第二種低層住居専用地域">第二種低層住居専用地域</option>
+              <option value="第一種中高層住居専用地域">第一種中高層住居専用地域</option>
+              <option value="第二種中高層住居専用地域">第二種中高層住居専用地域</option>
+              <option value="第一種住居地域">第一種住居地域</option>
+              <option value="第二種住居地域">第二種住居地域</option>
+              <option value="準住居地域">準住居地域</option>
+              <option value="田園住居地域">田園住居地域</option>
+            </optgroup>
+            <optgroup label="商業・工業系">
+              <option value="近隣商業地域">近隣商業地域</option>
+              <option value="商業地域">商業地域</option>
+              <option value="準工業地域">準工業地域</option>
+              <option value="工業地域">工業地域</option>
+              <option value="工業専用地域">工業専用地域</option>
+            </optgroup>
+            <option value="都市計画区域（用途地域なし）">都市計画区域（用途地域なし）</option>
+            <option value="準都市計画区域">準都市計画区域</option>
+            <option value="区域外">区域外</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="fire-zone">防火地域・準防火地域</label>
+          <select id="fire-zone">
+            <option value="">なし</option>
+            <option value="防火地域">防火地域</option>
+            <option value="準防火地域">準防火地域</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="fire-resistance">耐火・準耐火区分</label>
+          <select id="fire-resistance">
+            <option value="">未定・不明</option>
+            <option value="耐火建築物">耐火建築物</option>
+            <option value="準耐火建築物">準耐火建築物</option>
+            <option value="その他">その他（木造・一般建築物等）</option>
+          </select>
+        </div>
+
+
+      </div>
+
+      <button id="search-btn" onclick="searchArticles()">条文を検索</button>
+    </section>
+
+    <section class="result-section" id="result-section" style="display:none;">
+      <div class="result-header">
+        <h2>審査対象条文</h2>
+        <button id="mode-btn" onclick="toggleDisplayMode()">混在表示に切替</button>
+      </div>
+      <div id="summary-bar"></div>
+      <div id="results"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
