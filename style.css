@@ -1,0 +1,255 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+  background: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+}
+
+header {
+  background: #1a3a5c;
+  color: white;
+  padding: 20px 32px;
+}
+
+header h1 {
+  font-size: 1.6rem;
+  margin-bottom: 4px;
+}
+
+header p {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+main {
+  max-width: 960px;
+  margin: 32px auto;
+  padding: 0 16px;
+}
+
+.input-section, .result-section {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+h2 {
+  font-size: 1.1rem;
+  color: #1a3a5c;
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #1a3a5c;
+}
+
+.result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #1a3a5c;
+}
+
+.result-header h2 {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+#mode-btn {
+  font-size: 0.8rem;
+  padding: 5px 14px;
+  background: white;
+  border: 1px solid #1a3a5c;
+  color: #1a3a5c;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+#mode-btn:hover {
+  background: #1a3a5c;
+  color: white;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #555;
+}
+
+.form-group input,
+.form-group select {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #1a3a5c;
+}
+
+.checkbox-group {
+  gap: 8px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: normal !important;
+  cursor: pointer;
+}
+
+#search-btn {
+  background: #1a3a5c;
+  color: white;
+  border: none;
+  padding: 12px 40px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+}
+
+#search-btn:hover {
+  background: #25527a;
+}
+
+#summary-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.category-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.badge-確認申請 { background: #fde68a; color: #78350f; }
+.badge-構造規定 { background: #bfdbfe; color: #1e3a8a; }
+.badge-一般構造 { background: #d1fae5; color: #064e3b; }
+.badge-避難規定 { background: #fecaca; color: #7f1d1d; }
+.badge-防火規定 { background: #fed7aa; color: #7c2d12; }
+.badge-集団規定 { background: #e0f2fe; color: #0c4a6e; }
+
+
+.article-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.article-card:hover {
+  border-color: #1a3a5c;
+}
+
+.card-集団規定 { background: #f0f9ff; border-color: #bae6fd; }
+.card-一般構造 { background: #f0fdf4; border-color: #bbf7d0; }
+.card-防火規定 { background: #fff7ed; border-color: #fed7aa; }
+.card-避難規定 { background: #fff1f2; border-color: #fecdd3; }
+.card-構造規定 { background: #eff6ff; border-color: #bfdbfe; }
+
+.article-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.article-number {
+  font-weight: bold;
+  color: #1a3a5c;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.article-title {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.article-category {
+  margin-left: auto;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.article-description {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.article-note {
+  font-size: 0.82rem;
+  color: #888;
+  background: #f9fafb;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border-left: 3px solid #d1d5db;
+}
+
+.no-result {
+  text-align: center;
+  padding: 40px;
+  color: #888;
+  font-size: 0.95rem;
+}
+
+.category-badge.badge-active {
+  outline: 2px solid #333;
+  outline-offset: 1px;
+}
+
+.article-card.redacted {
+  background: #ebebeb;
+  border-color: #ddd;
+}
+
+.article-card.redacted .article-number,
+.article-card.redacted .article-title,
+.article-card.redacted .article-description {
+  color: #aaa;
+}
+
+.article-card.redacted .article-category {
+  opacity: 0.4;
+}
+
+.article-card.redacted .article-note {
+  background: #e0e0e0;
+  color: #aaa;
+  border-left-color: #ccc;
+}
