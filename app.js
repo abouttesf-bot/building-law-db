@@ -663,7 +663,7 @@ function matchesArticle(article, inp) {
   }
 
   if (id === 'law28') {
-    const targets = ['住宅', '共同住宅', '寄宿舎', '下宿', '学校', '病院', '診療所', '児童福祉施設'];
+    const targets = ['住宅', '長屋', '共同住宅', '寄宿舎', '下宿', '学校', '病院', '診療所', '児童福祉施設'];
     return targets.includes(inp.useType);
   }
 
@@ -811,7 +811,7 @@ function matchesArticle(article, inp) {
   }
 
   if (id === 'rei114') {
-    const targets = ['共同住宅', '寄宿舎', '下宿',
+    const targets = ['長屋', '共同住宅', '寄宿舎', '下宿',
       '病院', '診療所', 'ホテル', '旅館', '児童福祉施設', '学校'];
     return targets.includes(inp.useType);
   }
@@ -904,7 +904,7 @@ function matchesArticle(article, inp) {
   }
 
   if (id === 'law30') {
-    return inp.useType === '共同住宅';
+    return inp.useType === '長屋' || inp.useType === '共同住宅';
   }
 
   if (id === 'law32') return true;
