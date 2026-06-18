@@ -1,5 +1,14 @@
 const articlesData = [
   {
+    "id": "law6",
+    "law": "建築基準法",
+    "number": "法6条",
+    "title": "建築確認申請",
+    "category": "確認申請",
+    "description": "建築物の建築・大規模の修繕・大規模の模様替え等をしようとする場合は、工事着手前に確認申請を行い、建築主事または指定確認検査機関の確認を受けなければならない",
+    "note": "【第1号建築物】別表第一の特殊建築物で床面積200㎡超 → 全国で必要。<br><br>【第2号建築物（2025年改正後）】木造で3階以上・延べ300㎡超・高さ13m超・軒高9m超のいずれか → 全国で必要。<br><br>【第3号建築物】木造以外（RC・S・SRC等）で2階以上または延べ200㎡超 → 全国で必要。<br><br>【第4号建築物】上記以外の小規模建築物 → 都市計画区域・準都市計画区域内および防火・準防火地域内では必要。<br><br>【注意】増築は増築部分の面積・規模で判定。確認済証交付前に工事着手不可。"
+  },
+  {
     "id": "law20_1",
     "law": "建築基準法",
     "number": "法20条第1項第1号",
@@ -117,31 +126,13 @@ const articlesData = [
     "note": "倉庫は延べ面積200㎡以上、自動車車庫は150㎡以上で耐火建築物等が必要"
   },
   {
-    "id": "rei112_1",
+    "id": "rei112_area",
     "law": "建築基準法施行令",
-    "number": "令112条第1項",
-    "title": "面積区画（1500㎡）",
+    "number": "令112条第1項・第4項・第5項",
+    "title": "面積区画（500〜1500㎡）",
     "category": "防火規定",
-    "description": "耐火建築物・準耐火建築物で延べ面積が1500㎡を超えるものは、1500㎡以内ごとに防火区画しなければならない",
-    "note": "【適用ケース】任意の耐火・準耐火建築物、法61条（防火地域）による耐火建築物。1時間準耐火構造の床壁または特定防火設備で区画。※法21条・法27条・法61条（準防火地域）による建築物は第4項または第5項の区画も確認すること"
-  },
-  {
-    "id": "rei112_2",
-    "law": "建築基準法施行令",
-    "number": "令112条第5項",
-    "title": "面積区画（1000㎡）",
-    "category": "防火規定",
-    "description": "耐火建築物・準耐火建築物で延べ面積が1000㎡を超えるものは、法規制の根拠によっては1000㎡以内ごとに防火区画しなければならない",
-    "note": "【適用ケース】①法21条による建築物（通常火災終了時間1時間以上）②法27条・法61条（準防火地域）による準耐火建築物のうちイ-1・ロ-2系（1時間準耐火基準適合）。1時間準耐火構造の床壁または特定防火設備で区画"
-  },
-  {
-    "id": "rei112_3",
-    "law": "建築基準法施行令",
-    "number": "令112条第4項",
-    "title": "面積区画（500㎡）",
-    "category": "防火規定",
-    "description": "耐火建築物・準耐火建築物で延べ面積が500㎡を超えるものは、法規制の根拠によっては500㎡以内ごとに防火区画しなければならない",
-    "note": "【適用ケース】①法21条による建築物（通常火災終了時間1時間未満）②法27条・法61条（準防火地域）による準耐火建築物のうちイ-2・ロ-1系（45分準耐火基準適合）。防火設備で区画"
+    "description": "耐火建築物・準耐火建築物等は、建物の法的根拠に応じて500㎡・1000㎡・1500㎡のいずれかの面積以内ごとに防火区画しなければならない",
+    "note": "【1500㎡区画（第1項）】法的根拠を問わない一般の耐火・準耐火建築物（任意耐火・防火地域の法61条等）。1時間準耐火構造の床壁＋特定防火設備で区画。<br><br>【1000㎡区画（第5項）】①法21条（通常火災終了時間1時間以上）②法27条・法61条（準防火地域）による準耐火建築物のうちイ-1・ロ-2系（1時間準耐火）に該当するもの。<br><br>【500㎡区画（第4項）】①法21条（通常火災終了時間1時間未満）②法27条・法61条（準防火地域）による準耐火建築物のうちイ-2・ロ-1系（45分準耐火）に該当するもの。<br><br>【注意】3つの区画面積のうち適用されるのは建物の法的根拠に対応する1種類のみ。竪穴区画（第7項）・異種用途区画（第18項）も合わせて確認すること。"
   },
   {
     "id": "rei112_7",
@@ -617,16 +608,17 @@ function isSpecialBuilding(useType) {
   return special.includes(useType);
 }
 
+const BETTEN1_1TO4 = [
+  '劇場', '映画館', '演芸場', '観覧場', '公会堂', '集会場',
+  '病院', '診療所', 'ホテル', '旅館', '下宿', '共同住宅', '寄宿舎', '児童福祉施設',
+  '学校', '体育館', '博物館', '美術館', '図書館', 'ボウリング場', 'スキー場', 'スケート場', '水泳場',
+  '百貨店', 'マーケット', '展示場', 'キャバレー', 'カフェ', 'ナイトクラブ', 'バー', 'ダンスホール',
+  '遊技場', '公衆浴場', '待合', '料理店', '飲食店', '物品販売業を営む店舗'
+];
+
 // 令117条（5章2節の適用範囲）：法別表第1（い）欄(1)〜(4)項の特殊建築物・3階以上・延べ1000㎡超
 function matchesLaw117(inp) {
-  const targets = [
-    '劇場', '映画館', '演芸場', '観覧場', '公会堂', '集会場',
-    '病院', '診療所', 'ホテル', '旅館', '下宿', '共同住宅', '寄宿舎', '児童福祉施設',
-    '学校', '体育館', '博物館', '美術館', '図書館',
-    '百貨店', 'マーケット', '展示場', 'キャバレー', 'カフェ', 'ナイトクラブ', 'バー', 'ダンスホール',
-    '遊技場', '公衆浴場', '待合', '料理店', '飲食店', '物品販売業を営む店舗'
-  ];
-  return targets.includes(inp.useType) || inp.stories >= 3 || inp.totalFloorArea > 1000;
+  return BETTEN1_1TO4.includes(inp.useType) || inp.stories >= 3 || inp.totalFloorArea > 1000;
 }
 
 const NON_WOOD = ['RC造', '鉄骨造', 'SRC造', '組積造'];
@@ -634,6 +626,17 @@ const NON_WOOD = ['RC造', '鉄骨造', 'SRC造', '組積造'];
 function matchesArticle(article, inp) {
   const id = article.id;
   const c = article.conditions;
+
+  if (id === 'law6') {
+    if (isSpecialBuilding(inp.useType) && inp.totalFloorArea > 200) return true;
+    if ((!inp.structure || inp.structure === '木造') &&
+        (inp.stories >= 3 || inp.totalFloorArea > 300 || inp.height > 13)) return true;
+    if (inp.structure && inp.structure !== '木造' &&
+        (inp.stories >= 2 || inp.totalFloorArea > 200)) return true;
+    if (URBAN_AREAS.includes(inp.areaType)) return true;
+    if (inp.fireZone === '防火地域' || inp.fireZone === '準防火地域') return true;
+    return false;
+  }
 
   if (id === 'law20_1') {
     return inp.height > 60;
@@ -654,12 +657,7 @@ function matchesArticle(article, inp) {
   }
 
   if (id === 'law35') {
-    const targets = ['劇場', '映画館', '演芸場', '観覧場', '公会堂', '集会場',
-      '病院', '診療所', 'ホテル', '旅館', '共同住宅', '寄宿舎', '下宿',
-      '学校', '体育館', '百貨店', 'マーケット', '展示場',
-      'キャバレー', 'カフェ', 'ナイトクラブ', 'バー', 'ダンスホール',
-      '遊技場', '公衆浴場', '待合', '料理店', '飲食店', '物品販売業を営む店舗'];
-    return targets.includes(inp.useType) || inp.stories >= 3 || inp.totalFloorArea > 1000;
+    return BETTEN1_1TO4.includes(inp.useType) || inp.stories >= 3 || inp.totalFloorArea > 1000;
   }
 
   if (id === 'law35_2') {
@@ -687,7 +685,9 @@ function matchesArticle(article, inp) {
     const targets2 = ['病院', '診療所', 'ホテル', '旅館', '下宿', '共同住宅', '寄宿舎', '児童福祉施設'];
     const targets4 = ['百貨店', 'マーケット', '展示場', 'キャバレー', 'カフェ', 'ナイトクラブ',
       'バー', 'ダンスホール', '遊技場', '公衆浴場', '待合', '料理店', '飲食店', '物品販売業を営む店舗'];
-    return targets2.includes(inp.useType) || targets4.includes(inp.useType);
+    if (targets2.includes(inp.useType)) return inp.totalFloorArea >= 300;
+    if (targets4.includes(inp.useType)) return inp.totalFloorArea >= 1000;
+    return false;
   }
 
   if (id === 'law27_3') {
@@ -696,17 +696,7 @@ function matchesArticle(article, inp) {
     return false;
   }
 
-  if (id === 'rei112_1') {
-    const isFR = inp.fireResistance === '耐火建築物' || inp.fireResistance === '準耐火建築物';
-    return isFR && inp.totalFloorArea > 1500;
-  }
-
-  if (id === 'rei112_2') {
-    const isFR = inp.fireResistance === '耐火建築物' || inp.fireResistance === '準耐火建築物';
-    return isFR && inp.totalFloorArea > 1000;
-  }
-
-  if (id === 'rei112_3') {
+  if (id === 'rei112_area') {
     const isFR = inp.fireResistance === '耐火建築物' || inp.fireResistance === '準耐火建築物';
     return isFR && inp.totalFloorArea > 500;
   }
@@ -727,21 +717,13 @@ function matchesArticle(article, inp) {
   if (id === 'rei117_126') return matchesLaw117(inp);
 
   if (id === 'rei126_2') {
-    const specialTargets = ['劇場', '映画館', '演芸場', '観覧場', '公会堂', '集会場',
-      '病院', '診療所', 'ホテル', '旅館', '共同住宅', '寄宿舎', '下宿', '児童福祉施設',
-      '学校', '体育館', '百貨店', 'マーケット', '展示場', '物品販売業を営む店舗',
-      '遊技場', '公衆浴場', '飲食店', '料理店'];
-    if (specialTargets.includes(inp.useType) && inp.totalFloorArea > 500) return true;
+    if (BETTEN1_1TO4.includes(inp.useType) && inp.totalFloorArea > 500) return true;
     if (inp.stories >= 3 && inp.totalFloorArea > 500) return true;
     return false;
   }
 
   if (id === 'rei126_4') {
-    const targets = ['劇場', '映画館', '演芸場', '観覧場', '公会堂', '集会場',
-      '病院', '診療所', 'ホテル', '旅館', '共同住宅', '寄宿舎', '下宿',
-      '学校', '体育館', '百貨店', 'マーケット', '展示場', '物品販売業を営む店舗',
-      '遊技場', '公衆浴場', '飲食店', '料理店'];
-    return targets.includes(inp.useType) || inp.stories >= 3 || inp.totalFloorArea > 1000;
+    return BETTEN1_1TO4.includes(inp.useType) || inp.stories >= 3 || inp.totalFloorArea > 1000;
   }
 
   if (id === 'rei126_6') {
@@ -749,12 +731,7 @@ function matchesArticle(article, inp) {
   }
 
   if (id === 'rei128') {
-    const targets = ['劇場', '映画館', '演芸場', '観覧場', '公会堂', '集会場',
-      '病院', '診療所', 'ホテル', '旅館', '共同住宅', '寄宿舎', '下宿',
-      '学校', '体育館', '百貨店', 'マーケット', '展示場',
-      'キャバレー', 'カフェ', 'ナイトクラブ', 'バー', 'ダンスホール',
-      '遊技場', '公衆浴場', '待合', '料理店', '飲食店', '物品販売業を営む店舗'];
-    return targets.includes(inp.useType) || inp.stories >= 3 || inp.totalFloorArea > 1000;
+    return BETTEN1_1TO4.includes(inp.useType) || inp.stories >= 3 || inp.totalFloorArea > 1000;
   }
 
   if (id === 'rei129_13_3') {
@@ -788,7 +765,9 @@ function matchesArticle(article, inp) {
   }
 
   if (id === 'law23') {
-    if (inp.structure && inp.structure !== '木造') return false;
+    const nonTarget = ['鉄骨造', '鉄筋コンクリート造', '鉄骨鉄筋コンクリート造'];
+    if (inp.structure && nonTarget.includes(inp.structure)) return false;
+    if (inp.fireResistance === '耐火建築物' || inp.fireResistance === '準耐火建築物') return false;
     return URBAN_AREAS.includes(inp.areaType);
   }
 
@@ -797,6 +776,7 @@ function matchesArticle(article, inp) {
   }
 
   if (id === 'law26') {
+    if (inp.fireResistance === '耐火建築物' || inp.fireResistance === '準耐火建築物') return false;
     return inp.totalFloorArea > 1000;
   }
 
@@ -859,7 +839,8 @@ function matchesArticle(article, inp) {
   if (id === 'law19') return true;
 
   if (id === 'law25') {
-    if (inp.structure && inp.structure !== '木造') return false;
+    const nonTarget = ['鉄骨造', '鉄筋コンクリート造', '鉄骨鉄筋コンクリート造'];
+    if (inp.structure && nonTarget.includes(inp.structure)) return false;
     return URBAN_AREAS.includes(inp.areaType) && inp.totalFloorArea > 1000;
   }
 
@@ -884,7 +865,7 @@ function matchesArticle(article, inp) {
   return false;
 }
 
-const CATEGORY_ORDER = ['集団規定', '一般構造', '防火規定', '避難規定', '構造規定'];
+const CATEGORY_ORDER = ['確認申請', '集団規定', '一般構造', '防火規定', '避難規定', '構造規定'];
 
 let displayMode = 'grouped'; // 'grouped' | 'mixed'
 let lastInp = null;
