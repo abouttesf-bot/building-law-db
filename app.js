@@ -756,6 +756,7 @@ function matchesArticle(article, inp) {
   if (id === 'rei122') return matchesLaw117(inp);
 
   if (id === 'law23') {
+    if (inp.structure && inp.structure !== '木造') return false;
     return URBAN_AREAS.includes(inp.areaType);
   }
 
