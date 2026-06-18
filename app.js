@@ -1,14 +1,5 @@
 const articlesData = [
   {
-    "id": "law6",
-    "law": "建築基準法",
-    "number": "法6条",
-    "title": "建築確認申請",
-    "category": "確認申請",
-    "description": "建築物の建築・大規模の修繕・大規模の模様替え等をしようとする場合は、工事着手前に確認申請を行い、建築主事または指定確認検査機関の確認を受けなければならない",
-    "note": "【第1号建築物】別表第一の特殊建築物で床面積200㎡超 → 全国で必要。<br><br>【第2号建築物（2025年改正後）】木造で3階以上・延べ300㎡超・高さ13m超・軒高9m超のいずれか → 全国で必要。<br><br>【第3号建築物】木造以外（RC・S・SRC等）で2階以上または延べ200㎡超 → 全国で必要。<br><br>【第4号建築物】上記以外の小規模建築物 → 都市計画区域・準都市計画区域内および防火・準防火地域内では必要。<br><br>【注意】増築は増築部分の面積・規模で判定。確認済証交付前に工事着手不可。"
-  },
-  {
     "id": "law20_1",
     "law": "建築基準法",
     "number": "法20条第1項第1号",
@@ -596,17 +587,6 @@ const NISSHI_AREAS = [
   '近隣商業地域', '準工業地域'
 ];
 
-function isSpecialBuilding(useType) {
-  const special = ['劇場', '映画館', '演芸場', '観覧場', '公会堂', '集会場',
-    '病院', '診療所', 'ホテル', '旅館', '下宿', '共同住宅', '寄宿舎',
-    '児童福祉施設', '学校', '体育館', '博物館', '美術館', '図書館',
-    'ボウリング場', 'スキー場', 'スケート場', '水泳場',
-    '百貨店', 'マーケット', '展示場', 'キャバレー', 'カフェ',
-    'ナイトクラブ', 'バー', 'ダンスホール', '遊技場', '公衆浴場',
-    '待合', '料理店', '飲食店', '物品販売業を営む店舗',
-    '倉庫', '自動車車庫', '危険物の貯蔵場', 'と畜場', '火葬場', '汚物処理場'];
-  return special.includes(useType);
-}
 
 const BETTEN1_1TO4 = [
   '劇場', '映画館', '演芸場', '観覧場', '公会堂', '集会場',
@@ -626,17 +606,6 @@ const NON_WOOD = ['RC造', '鉄骨造', 'SRC造', '組積造'];
 function matchesArticle(article, inp) {
   const id = article.id;
   const c = article.conditions;
-
-  if (id === 'law6') {
-    if (isSpecialBuilding(inp.useType) && inp.totalFloorArea > 200) return true;
-    if ((!inp.structure || inp.structure === '木造') &&
-        (inp.stories >= 3 || inp.totalFloorArea > 300 || inp.height > 13)) return true;
-    if (inp.structure && inp.structure !== '木造' &&
-        (inp.stories >= 2 || inp.totalFloorArea > 200)) return true;
-    if (URBAN_AREAS.includes(inp.areaType)) return true;
-    if (inp.fireZone === '防火地域' || inp.fireZone === '準防火地域') return true;
-    return false;
-  }
 
   if (id === 'law20_1') {
     return inp.height > 60;
@@ -865,7 +834,7 @@ function matchesArticle(article, inp) {
   return false;
 }
 
-const CATEGORY_ORDER = ['確認申請', '集団規定', '一般構造', '防火規定', '避難規定', '構造規定'];
+const CATEGORY_ORDER = ['集団規定', '一般構造', '防火規定', '避難規定', '構造規定'];
 
 let displayMode = 'grouped'; // 'grouped' | 'mixed'
 let lastInp = null;
