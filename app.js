@@ -258,7 +258,6 @@ const articlesData = [
     "title": "外壁の延焼防止",
     "category": "集団規定",
     "description": "法22条の指定区域内の木造建築物等については、延焼のおそれのある部分の外壁を準防火性能のある構造としなければならない",
-    "note": ""
   },
   {
     "id": "law21",
@@ -894,7 +893,7 @@ function renderResults() {
         <span class="article-category category-badge badge-${a.category}">${a.category}</span>
       </div>
       <div class="article-description">${a.description}</div>
-      <div class="article-note">📌 ${a.note}</div>
+      ${a.note ? `<div class="article-note">📌 ${a.note}</div>` : ''}
     </div>
   `;
   };
