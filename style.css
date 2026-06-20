@@ -255,9 +255,9 @@ h2 {
 
 .result-header-right {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 6px;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
 }
 
 #map-link-bar {
