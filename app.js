@@ -473,8 +473,8 @@ const articlesData = [
     "number": "法25条",
     "title": "大規模の木造建築物等の外壁等",
     "category": "防火規定",
-    "description": "法22条の指定区域内で延べ面積が1000㎡を超える木造建築物等は、外壁・軒裏のうち延焼のおそれのある部分を防火構造としなければならない",
-    "note": "対象：法22条指定区域（都市計画区域等）内の木造・組積造等で延べ面積1000㎡超。耐火建築物・準耐火建築物は適用除外。防火構造の仕様は令108条・告示による。法22条〜法25条は指定区域内の延焼防止に関する一連の規定"
+    "description": "延べ面積が1000㎡を超える木造建築物等は、外壁・軒裏のうち延焼のおそれのある部分を防火構造とし、屋根は法22条第1項の構造としなければならない",
+    "note": "地域要件なし（全国適用）。同一敷地内に複数の木造建築物等がある場合は延べ面積の合計で判定。"
   },
   {
     "id": "law30",
@@ -795,7 +795,7 @@ function matchesArticle(article, inp) {
 
   if (id === 'law25') {
     if (inp.structure && inp.structure !== '木造' && inp.structure !== '混構造') return false;
-    return URBAN_AREAS.includes(inp.areaType) && inp.totalFloorArea > 1000;
+    return inp.totalFloorArea > 1000;
   }
 
   if (id === 'law30') {
