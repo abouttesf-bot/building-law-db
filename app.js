@@ -879,11 +879,13 @@ function renderResults() {
 
   const allCategories = [...new Set(articlesData.map(a => a.category))];
   const categories = CATEGORY_ORDER.filter(c => allCategories.includes(c));
+  const matchedIds = matched.map(a => a.id).join(',');
   summaryEl.innerHTML = `<strong>全${articlesData.length}件のうち、${matched.length}件の条文が該当：</strong>` +
     categories.map(c => {
       const isActive = activeCategory === c;
       return `<span class="category-badge badge-${c}${isActive ? ' badge-active' : ''}" onclick="filterCategory('${c}')" style="cursor:pointer">${c} ${matched.filter(a => a.category === c).length}件</span>`;
-    }).join('');
+    }).join('') +
+    `<a href="mindmap.html?matched=${matchedIds}" target="_blank" class="mindmap-link">法令関係マップ →</a>`;
 
   const renderCard = (a, redacted) => {
     const hidden = activeCategory && a.category !== activeCategory;
