@@ -252,3 +252,20 @@ h2 {
   color: #aaa;
   border-left-color: #ccc;
 }
+
+.mindmap-link {
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  background: white;
+  border: 1px solid #1a3a5c;
+  color: #1a3a5c;
+  border-radius: 4px;
+  text-decoration: none;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+.mindmap-link:hover {
+  background: #1a3a5c;
+  color: white;
+}
