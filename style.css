@@ -265,6 +265,7 @@ h2 {
 }
 
 .mindmap-link {
+  display: inline-block;
   font-size: 0.8rem;
   padding: 5px 14px;
   background: white;
@@ -273,7 +274,7 @@ h2 {
   border-radius: 4px;
   text-decoration: none;
   white-space: nowrap;
-  margin-left: auto;
+  line-height: 1.6;
 }
 
 .mindmap-link:hover {
