@@ -718,7 +718,7 @@ function matchesArticle(article, inp) {
   }
 
   if (id === 'law22') {
-    return URBAN_AREAS.includes(inp.areaType);
+    return URBAN_AREAS.includes(inp.areaType) || inp.fireZone === '22条区域';
   }
 
 
