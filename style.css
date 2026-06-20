@@ -253,6 +253,11 @@ h2 {
   border-left-color: #ccc;
 }
 
+#map-link-bar {
+  text-align: right;
+  margin-bottom: 12px;
+}
+
 .mindmap-link {
   font-size: 0.8rem;
   padding: 4px 12px;
