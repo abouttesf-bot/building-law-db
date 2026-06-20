@@ -730,10 +730,7 @@ function matchesArticle(article, inp) {
   }
 
   if (id === 'law23') {
-    const nonTarget = ['鉄骨造', '鉄筋コンクリート造', '鉄骨鉄筋コンクリート造'];
-    if (inp.structure && nonTarget.includes(inp.structure)) return false;
-    if (inp.fireResistance === '耐火建築物' || inp.fireResistance === '準耐火建築物') return false;
-    return URBAN_AREAS.includes(inp.areaType) || (inp.fireZone === '22条区域' && (inp.structure === '木造' || inp.structure === '混構造'));
+    return inp.fireZone === '22条区域' && (inp.structure === '木造' || inp.structure === '混構造');
   }
 
   if (id === 'law21') {
