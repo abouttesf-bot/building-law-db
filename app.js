@@ -794,8 +794,7 @@ function matchesArticle(article, inp) {
   if (id === 'law19') return true;
 
   if (id === 'law25') {
-    const nonTarget = ['鉄骨造', '鉄筋コンクリート造', '鉄骨鉄筋コンクリート造'];
-    if (inp.structure && nonTarget.includes(inp.structure)) return false;
+    if (inp.structure && inp.structure !== '木造' && inp.structure !== '混構造') return false;
     return URBAN_AREAS.includes(inp.areaType) && inp.totalFloorArea > 1000;
   }
 
