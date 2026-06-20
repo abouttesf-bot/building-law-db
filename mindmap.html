@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>法令関係マップ - 建築基準法条文DB</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+      background: #f0f4f8;
+      color: #333;
+      padding: 24px 20px;
+    }
+    .page-title {
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #1a3a5c;
+      margin-bottom: 4px;
+    }
+    .page-sub {
+      text-align: center;
+      font-size: 0.82rem;
+      color: #888;
+      margin-bottom: 6px;
+    }
+    .back-link {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .back-link a {
+      font-size: 0.82rem;
+      color: #1a3a5c;
+      text-decoration: none;
+      border-bottom: 1px solid #1a3a5c;
+    }
+    .legend {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: #555;
+    }
+    .legend-swatch {
+      width: 18px;
+      height: 14px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+    .cat-block {
+      background: white;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .cat-label {
+      display: inline-block;
+      font-size: 0.95rem;
+      font-weight: bold;
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+    }
+    .cat-集団規定 .cat-label { background: #e0f2fe; color: #0c4a6e; }
+    .cat-一般構造 .cat-label { background: #d1fae5; color: #064e3b; }
+    .cat-防火規定 .cat-label { background: #fed7aa; color: #7c2d12; }
+    .cat-避難規定 .cat-label { background: #fecaca; color: #7f1d1d; }
+    .cat-構造規定 .cat-label { background: #bfdbfe; color: #1e3a8a; }
+    .rows { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+    .row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .box-law {
+      background: #1a3a5c;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      min-width: 152px;
+      flex-shrink: 0;
+      line-height: 1.5;
+    }
+    .box-law strong { display: block; font-size: 0.85rem; }
+    .box-law span { font-size: 0.74rem; opacity: 0.82; }
+    .arr { color: #bbb; font-size: 1.4rem; flex-shrink: 0; }
+    .rei-group { display: flex; flex-wrap: wrap; gap: 6px; }
+    .box-rei {
+      background: #eff6ff;
+      border: 1px solid #c7d9f8;
+      color: #1e40af;
+      padding: 7px 11px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+    .box-rei strong { display: block; }
+    .box-rei span { color: #3b5bdb; font-size: 0.73rem; }
+    .divider {
+      border: none;
+      border-top: 1px dashed #e5e7eb;
+      margin: 14px 0 12px;
+    }
+    .section-label {
+      font-size: 0.72rem;
+      color: #aaa;
+      margin-bottom: 8px;
+      letter-spacing: 0.04em;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag-l {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      color: #475569;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.77rem;
+    }
+    .tag-r {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.77rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-title">建築基準法条文DB　法令関係マップ</div>
+<p class="page-sub">本DBに収録された条文における法（建築基準法）と令（施行令）の委任関係</p>
+<div class="back-link"><a href="index.html">← 条文検索DBに戻る</a></div>
+
+<div class="legend">
+  <div class="legend-item">
+    <div class="legend-swatch" style="background:#1a3a5c"></div>
+    法 → 令への委任あり
+  </div>
+  <div class="legend-item">
+    <div class="legend-swatch" style="background:#eff6ff;border:1px solid #c7d9f8"></div>
+    令：法から委任された詳細基準
+  </div>
+  <div class="legend-item">
+    <div class="legend-swatch" style="background:#f8fafc;border:1px solid #cbd5e1"></div>
+    法（単独収録）
+  </div>
+  <div class="legend-item">
+    <div class="legend-swatch" style="background:#f0fdf4;border:1px solid #bbf7d0"></div>
+    令（単独収録）
+  </div>
+</div>
+
+<!-- 集団規定 -->
+<div class="cat-block cat-集団規定">
+  <div class="cat-label">集団規定</div>
+  <div class="section-label">法（単独）— 数値基準は別表・政令・告示等で規定</div>
+  <div class="tags">
+    <span class="tag-l">法22条 屋根の延焼防止</span>
+    <span class="tag-l">法23条 外壁の延焼防止</span>
+    <span class="tag-l">法25条 大規模木造外壁等</span>
+    <span class="tag-l">法43条 接道規制</span>
+    <span class="tag-l">法48条 用途制限</span>
+    <span class="tag-l">法52条 容積率</span>
+    <span class="tag-l">法53条 建蔽率</span>
+    <span class="tag-l">法54条 外壁後退距離</span>
+    <span class="tag-l">法55条 絶対高さ制限</span>
+    <span class="tag-l">法56条 高さ制限（斜線）</span>
+    <span class="tag-l">法56条の2 日影規制</span>
+    <span class="tag-l">法61条 防火・準防火地域</span>
+    <span class="tag-l">法62条 防火地域の屋根</span>
+    <span class="tag-l">法64条 看板等の防火</span>
+    <span class="tag-l">法68条の2 地区計画</span>
+  </div>
+</div>
+
+<!-- 一般構造 -->
+<div class="cat-block cat-一般構造">
+  <div class="cat-label">一般構造</div>
+  <div class="rows">
+    <div class="row">
+      <div class="box-law">
+        <strong>法28条</strong>
+        <span>居室の採光・換気</span>
+      </div>
+      <div class="arr">→</div>
+      <div class="rei-group">
+        <div class="box-rei">
+          <strong>令20条の2・令20条の3</strong>
+          <span>換気設備・火気使用室の換気の技術基準</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="box-law">
+        <strong>法28条の2</strong>
+        <span>シックハウス対策</span>
+      </div>
+      <div class="arr">→</div>
+      <div class="rei-group">
+        <div class="box-rei">
+          <strong>令20条の2・令20条の3</strong>
+          <span>換気設備技術基準（シックハウス対策換気分）</span>
+        </div>
+        <div class="box-rei">
+          <strong>令129条の2の6・令129条の2の7</strong>
+          <span>機械換気設備・中央管理方式空調の構造</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="box-law">
+        <strong>法34条の2</strong>
+        <span>昇降機以外の建築設備</span>
+      </div>
+      <div class="arr">→</div>
+      <div class="rei-group">
+        <div class="box-rei">
+          <strong>令129条の2〜令129条の2の5</strong>
+          <span>給水・排水のための配管設備</span>
+        </div>
+        <div class="box-rei">
+          <strong>令129条の2の6・令129条の2の7</strong>
+          <span>機械換気設備・中央管理方式空調の構造</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="divider">
+  <div class="section-label">法（単独）</div>
+  <div class="tags" style="margin-bottom:10px">
+    <span class="tag-l">法19条 敷地の衛生・安全</span>
+    <span class="tag-l">法29条 地階の居室</span>
+    <span class="tag-l">法30条 長屋・共同住宅の界壁</span>
+    <span class="tag-l">法31条 便所</span>
+    <span class="tag-l">法32条 電気設備</span>
+    <span class="tag-l">法33条 避雷設備</span>
+    <span class="tag-l">法34条 昇降機（EV）</span>
+    <span class="tag-l">法37条 建築材料の品質</span>
+    <span class="tag-l">法40条 条例による付加制限</span>
+  </div>
+  <div class="section-label">令（単独）</div>
+  <div class="tags">
+    <span class="tag-r">令116条の2 無窓居室の判定</span>
+    <span class="tag-r">令23条 階段の幅・蹴上・踏面</span>
+    <span class="tag-r">令24条 踊り場の位置・踏幅</span>
+    <span class="tag-r">令25条 階段の手すり等</span>
+    <span class="tag-r">令129条の12・令129条の13 エスカレーター・小荷物専用昇降機</span>
+  </div>
+</div>
+
+<!-- 防火規定 -->
+<div class="cat-block cat-防火規定">
+  <div class="cat-label">防火規定</div>
+  <div class="rows">
+    <div class="row">
+      <div class="box-law">
+        <strong>法21条</strong>
+        <span>大規模建築物の防耐火性能</span>
+      </div>
+      <div class="arr">→</div>
+      <div class="rei-group">
+        <div class="box-rei">
+          <strong>令112条（第4項・第5項）</strong>
+          <span>面積区画 500㎡・1000㎡区画の根拠法令</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="box-law">
+        <strong>法27条</strong>
+        <span>特殊建築物の防耐火</span>
+      </div>
+      <div class="arr">→</div>
+      <div class="rei-group">
+        <div class="box-rei">
+          <strong>令112条（各項）</strong>
+          <span>防火区画（面積・竪穴・高層・異種用途）</span>
+        </div>
+        <div class="box-rei">
+          <strong>令114条</strong>
+          <span>界壁・間仕切壁の防火</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="box-law">
+        <strong>法35条の2</strong>
+        <span>内装制限</span>
+      </div>
+      <div class="arr">→</div>
+      <div class="rei-group">
+        <div class="box-rei">
+          <strong>令128条の3の2〜令128条の5</strong>
+          <span>内装制限（対象建築物・材料の詳細）</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="divider">
+  <div class="section-label">法（単独）</div>
+  <div class="tags">
+    <span class="tag-l">法26条 防火壁・防火床</span>
+  </div>
+</div>
+
+<!-- 避難規定 -->
+<div class="cat-block cat-避難規定">
+  <div class="cat-label">避難規定</div>
+  <div class="rows">
+    <div class="row">
+      <div class="box-law">
+        <strong>法35条</strong>
+        <span>避難施設等</span>
+      </div>
+      <div class="arr">→</div>
+      <div class="rei-group">
+        <div class="box-rei">
+          <strong>令117〜126条</strong>
+          <span>廊下幅・直通階段・避難階段・出入口等</span>
+        </div>
+        <div class="box-rei">
+          <strong>令126条の2・令126条の3</strong>
+          <span>排煙設備</span>
+        </div>
+        <div class="box-rei">
+          <strong>令126条の4・令126条の5</strong>
+          <span>非常用照明装置</span>
+        </div>
+        <div class="box-rei">
+          <strong>令126条の6・令126条の7</strong>
+          <span>非常用進入口</span>
+        </div>
+        <div class="box-rei">
+          <strong>令127〜128条の3</strong>
+          <span>敷地内の通路等</span>
+        </div>
+        <div class="box-rei">
+          <strong>令129条の13の3</strong>
+          <span>非常用エレベーター</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 構造規定 -->
+<div class="cat-block cat-構造規定">
+  <div class="cat-label">構造規定</div>
+  <div class="rows">
+    <div class="row">
+      <div class="box-law">
+        <strong>法20条</strong>
+        <span>構造耐力</span>
+      </div>
+      <div class="arr">→</div>
+      <div class="rei-group">
+        <div class="box-rei">
+          <strong>令40〜50条</strong>
+          <span>木造の構造基準・壁量計算</span>
+        </div>
+        <div class="box-rei">
+          <strong>令51〜62条</strong>
+          <span>組積造の構造基準</span>
+        </div>
+        <div class="box-rei">
+          <strong>令62条の2〜62条の8</strong>
+          <span>補強コンクリートブロック造の構造基準</span>
+        </div>
+        <div class="box-rei">
+          <strong>令63〜70条</strong>
+          <span>鉄骨造の構造基準</span>
+        </div>
+        <div class="box-rei">
+          <strong>令71〜79条の3</strong>
+          <span>鉄筋コンクリート造の構造基準</span>
+        </div>
+        <div class="box-rei">
+          <strong>令79条の4</strong>
+          <span>鉄骨鉄筋コンクリート造の構造基準</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="divider">
+  <div class="section-label">令（単独）</div>
+  <div class="tags">
+    <span class="tag-r">令77条・令93条 基礎の構造・地盤調査</span>
+  </div>
+</div>
+
+</body>
+</html>
