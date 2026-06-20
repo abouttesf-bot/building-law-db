@@ -898,7 +898,7 @@ function renderResults() {
         <span class="article-category category-badge badge-${a.category}">${a.category}</span>
       </div>
       <div class="article-description">${a.description}</div>
-      <div class="article-note">📌 ${a.note}</div>
+      <div class="article-note">memo ${a.note}</div>
     </div>
   `;
   };
