@@ -51,7 +51,7 @@ h2 {
 
 .result-header {
   display: flex;
-  align-items: stretch;
+  align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
   border-bottom: 2px solid #1a3a5c;
@@ -60,20 +60,18 @@ h2 {
 .result-header h2 {
   border-bottom: none;
   margin-bottom: 0;
-  display: flex;
-  align-items: center;
 }
 
 .result-header-right {
   display: flex;
   flex-direction: row;
-  align-items: stretch;
+  align-items: center;
   gap: 8px;
 }
 
 #mode-btn {
   font-size: 0.8rem;
-  padding: 0 14px;
+  padding: 5px 14px;
   background: white;
   border: 1px solid #1a3a5c;
   color: #1a3a5c;
@@ -269,6 +267,7 @@ h2 {
   gap: 8px;
 }
 
+
 #map-link-bar {
   text-align: right;
 }
@@ -277,7 +276,7 @@ h2 {
   display: inline-flex;
   align-items: center;
   font-size: 0.8rem;
-  padding: 0 14px;
+  padding: 5px 14px;
   background: white;
   border: 1px solid #1a3a5c;
   color: #1a3a5c;
