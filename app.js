@@ -739,7 +739,7 @@ function matchesArticle(article, inp) {
   if (id === 'law21') {
     if (inp.structure !== '木造' && inp.structure !== '混構造') return false;
     const betten1_5_6 = ['倉庫', '自動車車庫'];
-    return inp.stories >= 4 || inp.height > 16 || (betten1_5_6.includes(inp.useType) && inp.height > 13);
+    return inp.stories >= 4 || inp.height > 16 || (betten1_5_6.includes(inp.useType) && inp.height > 13) || inp.totalFloorArea > 3000;
   }
 
   if (id === 'law26') {
