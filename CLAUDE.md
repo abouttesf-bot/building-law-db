@@ -102,6 +102,11 @@ building-law-db/
 
 - ファイル編集後のGitHubプッシュは**確認なしで即実行**する
 
+## 関係法令マップ（mindmap.html）の更新ルール
+
+- app.jsのDB（条文の追加・修正・削除）を行ったときは、**必ずmindmap.htmlも合わせて更新する**
+- mindmap.htmlの更新に際してユーザーへの確認は不要
+
 ---
 
 ## GitHub プッシュ手順
