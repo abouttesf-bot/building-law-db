@@ -180,6 +180,15 @@ const articlesData = [
     "memo": "消防活動用。1台以上設置が必要（床面積により追加台数あり）"
   },
   {
+    "id": "rei129_2_3",
+    "law": "建築基準法施行令",
+    "number": "令129条の2の3",
+    "title": "建築設備の構造強度",
+    "category": "構造規定",
+    "description": "建築設備（昇降機・配管設備等）および屋上突出物（水槽・煙突等）の構造耐力に関する基準",
+    "memo": "【第1号】昇降機は令129条の4・5・6・8・12に適合。<br>【第2号】昇降機以外の建築設備は大臣認定の構造方法を用いる。<br>【第3号】法20条第1〜3号の建築物の屋上突出物（水槽・煙突等）は構造計算により風圧・地震等に対して安全を確認。"
+  },
+  {
     "id": "rei129_pipe",
     "law": "建築基準法施行令",
     "number": "令129条の2の4",
@@ -784,6 +793,7 @@ function matchesArticle(article, inp) {
   if (id === 'rei25') return inp.stories >= 2;
 
   if (id === 'rei_ventilation') return true;
+  if (id === 'rei129_2_3') return true;
   if (id === 'rei129_pipe') return true;
   if (id === 'law34_2') return true;
   if (id === 'rei129_esc') return true;
