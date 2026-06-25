@@ -821,9 +821,10 @@ function renderResults() {
 
   const allCategories = [...new Set(articlesData.map(a => a.category))];
   const categories = CATEGORY_ORDER.filter(c => allCategories.includes(c));
-  const matchedIds = matched.map(a => a.id).join(',');
+  const matchedIds = matched.map(a => a.id);
+  window._lastMatchedIds = matchedIds;
   document.getElementById('map-link-bar').innerHTML =
-    `<a href="mindmap.html?matched=${matchedIds}" target="_blank" class="mindmap-link">法令関係マップ →</a>`;
+    `<button class="mindmap-link" onclick="showMap()">法令関係マップ →</button>`;
   summaryEl.innerHTML = `<strong>全${articlesData.length}件のうち、${matched.length}件の条文が該当：</strong>` +
     categories.map(c => {
       const isActive = activeCategory === c;
@@ -860,4 +861,29 @@ function renderResults() {
   }
 
   resultsEl.innerHTML = cards;
+}
+
+function switchTab(tabName) {
+  document.getElementById('tab-search').style.display = tabName === 'search' ? '' : 'none';
+  document.getElementById('tab-map').style.display = tabName === 'map' ? '' : 'none';
+  document.querySelectorAll('.tab-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.dataset.tab === tabName);
+  });
+}
+
+function showMap() {
+  switchTab('map');
+  const matched = new Set(window._lastMatchedIds || []);
+  document.querySelectorAll('#tab-map [data-id]').forEach(function(el) {
+    const ids = el.dataset.id.split(' ');
+    el.classList.remove('highlight-item', 'dimmed-item');
+    if (matched.size === 0) return;
+    if (ids.some(function(id) { return matched.has(id); })) {
+      el.classList.add('highlight-item');
+    } else {
+      el.classList.add('dimmed-item');
+    }
+  });
+  const notice = document.getElementById('map-filter-notice');
+  if (notice) notice.style.display = matched.size ? 'block' : 'none';
 }
