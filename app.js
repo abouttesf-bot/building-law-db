@@ -716,7 +716,7 @@ function matchesArticle(article, inp) {
   }
 
   if (id === 'law34') {
-    return inp.stories >= 6 || inp.height > 20;
+    return inp.stories >= 2;
   }
 
   if (id === 'rei77') {
