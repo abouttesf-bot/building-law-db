@@ -341,15 +341,6 @@ const articlesData = [
     "memo": "令129条の3〜12の構造基準に適合が必要。高さ31m超は法34条第2項・令129条の13の3の非常用EVも必要。"
   },
   {
-    "id": "law34_2",
-    "law": "建築基準法",
-    "number": "法34条の2",
-    "title": "昇降機以外の建築設備の安全基準",
-    "category": "一般構造",
-    "description": "建築物に設ける昇降機以外の建築設備（給排水・換気・電気・ガス等）は、安全上・防火上・衛生上支障のない構造としなければならない",
-    "memo": "令129条の2の3（構造強度）・令129条の2の4（給排水配管）・令129条の2の5（換気設備）が主な関連規定。給排水・換気・電気等の設備が対象。"
-  },
-  {
     "id": "rei129_esc",
     "law": "建築基準法施行令",
     "number": "令129条の12・令129条の13",
@@ -795,7 +786,6 @@ function matchesArticle(article, inp) {
   if (id === 'rei_ventilation') return true;
   if (id === 'rei129_2_3') return true;
   if (id === 'rei129_pipe') return true;
-  if (id === 'law34_2') return true;
   if (id === 'rei129_esc') return true;
 
   return false;
