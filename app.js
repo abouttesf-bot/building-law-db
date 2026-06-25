@@ -595,7 +595,7 @@ function matchesArticle(article, inp) {
   }
 
   if (id === 'law35_3') {
-    return BETTEN1_1TO4.includes(inp.useType) || inp.stories >= 3 || inp.totalFloorArea > 1000;
+    return true;
   }
 
 
