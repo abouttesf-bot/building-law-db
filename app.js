@@ -45,6 +45,15 @@ const articlesData = [
     "memo": "①法別表第一(1)〜(4)の特殊建築物、②3階以上、③延べ1000㎡超、④無窓居室のいずれかで適用。令117〜126条の規定が連動する。"
   },
   {
+    "id": "law35_3",
+    "law": "建築基準法",
+    "number": "法35条の3",
+    "title": "無窓居室の主要構造部",
+    "category": "避難規定",
+    "description": "政令で定める開口部を有しない居室（採光上有効な開口部が床面積の1/20未満等）は、その居室を区画する主要構造部を耐火構造又は不燃材料で造らなければならない",
+    "memo": "令111条で定める開口部を有しない居室が対象。主要構造部を耐火構造又は不燃材料とする必要がある。<br>ただし法別表第一(い)欄(一)項（劇場・映画館・演芸場・観覧場・公会堂・集会場）は除外。"
+  },
+  {
     "id": "law48",
     "law": "建築基準法",
     "number": "法48条",
@@ -582,6 +591,10 @@ function matchesArticle(article, inp) {
   }
 
   if (id === 'law35') {
+    return BETTEN1_1TO4.includes(inp.useType) || inp.stories >= 3 || inp.totalFloorArea > 1000;
+  }
+
+  if (id === 'law35_3') {
     return BETTEN1_1TO4.includes(inp.useType) || inp.stories >= 3 || inp.totalFloorArea > 1000;
   }
 
