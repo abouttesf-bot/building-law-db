@@ -36,6 +36,15 @@ const articlesData = [
     "memo": "令20条の2（換気量の算定・設備構造）、令20条の3（火気使用室の換気）、令129条の2の5（機械換気設備・中央管理方式空調）による。"
   },
   {
+    "id": "rei21",
+    "law": "建築基準法施行令",
+    "number": "令21条",
+    "title": "居室の天井の高さ",
+    "category": "一般構造",
+    "description": "居室の天井の高さは2.1m以上としなければならない",
+    "memo": "【第2項】天井の高さは床面から測る。一室で高さが異なる部分がある場合は平均の高さによる。"
+  },
+  {
     "id": "law35",
     "law": "建築基準法",
     "number": "法35条",
@@ -763,6 +772,7 @@ function matchesArticle(article, inp) {
   if (id === 'rei24') return inp.stories >= 2;
   if (id === 'rei25') return inp.stories >= 2;
 
+  if (id === 'rei21') return true;
   if (id === 'rei_ventilation') return true;
   if (id === 'rei129_2_3') return true;
   if (id === 'rei129_pipe') return true;
